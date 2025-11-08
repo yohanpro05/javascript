@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 1 - Presentación</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin-top: 50px; background: #f0f8ff; }
+    input, button { padding: 10px; margin: 10px; font-size: 16px; }
+    #resultado { margin-top: 20px; font-size: 20px; color: #2c3e50; }
+  </style>
+</head>
+<body>
+  <h1>Presentación Personal</h1>
+  <input type="text" id="nombre" placeholder="Tu nombre">
+  <input type="number" id="edad" placeholder="Tu edad">
+  <button onclick="presentar()">Mostrar</button>
+  <div id="resultado"></div>
+
+  <script>
+    const presentar = () => {
+      let nombre = document.getElementById("nombre").value;
+      let edad = document.getElementById("edad").value;
+      document.getElementById("resultado").innerHTML = 
+        `Hola, me llamo <strong>${nombre}</strong> y tengo <strong>${edad}</strong> años.`;
+    };
+  </script>
+</body>
+</html>

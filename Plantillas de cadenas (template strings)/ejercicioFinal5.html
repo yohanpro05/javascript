@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 5 - Contador</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin-top: 50px; background: #e1f5fe; }
+    textarea, button { padding: 15px; margin: 10px; font-size: 18px; }
+    textarea { width: 300px; height: 80px; }
+    #resultado { margin-top: 20px; font-size: 26px; color: #00695c; background: #b2dfdb; padding: 15px; border-radius: 10px; display: inline-block; }
+  </style>
+</head>
+<body>
+  <h1>Contador de Caracteres</h1>
+  <textarea id="texto" placeholder="Escribe algo aquí...">JavaScript</textarea><br>
+  <button onclick="contar()">Contar</button>
+  <div id="resultado"></div>
+
+  <script>
+    const contar = () => {
+      let texto = document.getElementById("texto").value;
+      document.getElementById("resultado").innerHTML = 
+        `El texto tiene <strong>${texto.length}</strong> caracteres.`;
+    };
+  </script>
+</body>
+</html>

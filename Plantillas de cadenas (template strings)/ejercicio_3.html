@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte de Estudiantes (sin ternario)</title>
+<style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .reporte { border: 1px solid #ccc; margin: 15px 0; padding: 15px; border-radius: 8px; background: #f9f9f9; }
+    .aprobado { border-left: 5px solid green; }
+    .reprobado { border-left: 5px solid red; }
+    .resumen { background: #e3f2fd; padding: 15px; border-radius: 8px; font-weight: bold; }
+</style>
+</head>
+<body>
+    <h1>Reportes de Evaluación</h1>
+    <div id="reportes"></div>
+    <div id="resumen"></div>
+
+<script>
+    // 1. Arreglo de estudiantes
+    const estudiantes = [
+        { nombre: "Ana López", promedio: 85, nivel: "Avanzado" },
+        { nombre: "Carlos Ruiz", promedio: 62, nivel: "Intermedio" },
+        { nombre: "María Gómez", promedio: 95, nivel: "Avanzado" },
+        { nombre: "José Pérez", promedio: 58, nivel: "Básico" },
+        { nombre: "Laura Sánchez", promedio: 78, nivel: "Intermedio" }
+    ];
+
+    // 2. Función generarReporte (sin ternario)
+    const generarReporte = (estudiante) => {
+        const { nombre, promedio, nivel } = estudiante;
+        let estado = "";
+        let observacion = "";
+
+        if (promedio >= 70) {
+        estado = "Aprobado";
+        } else {
+        estado = "Reprobado";
+    }
+
+    if (promedio >= 90) {
+        observacion = "Excelente desempeño. ¡Sigue así!";
+    } else if (promedio >= 80) {
+        observacion = "Muy buen trabajo. Casi en la cima.";
+    } else if (promedio >= 70) {
+        observacion = "Aprobado. Puedes mejorar con más práctica.";
+    } else if (promedio >= 60) {
+        observacion = "Reprobado. Necesitas reforzar conceptos clave.";
+    } else {
+        observacion = "Requiere apoyo urgente. ¡Hablemos!";
+    }
+
+    return `
+    <div class="reporte ${estado === 'Aprobado' ? 'aprobado' : 'reprobado'}">
+        <h3>${nombre}</h3>
+        <p><strong>Promedio:</strong> ${promedio}</p>
+        <p><strong>Nivel:</strong> ${nivel}</p>
+        <p><strong>Estado:</strong> ${estado}</p>
+        <p><em>${observacion}</em></p>
+        </div>
+    `.trim();
+    };
+
+    // 3. Aplicar map()
+    const reportesHTML = estudiantes
+    .map(generarReporte)
+    .join('');
+
+    document.getElementById('reportes').innerHTML = reportesHTML;
+
+    // 4. Reporte grupal de aprobados
+    const generarReporteAprobados = () => {
+    const aprobados = estudiantes.filter(est => est.promedio >= 70);
+    const cantidad = aprobados.length;
+    let promedioGeneral = 0;
+
+    if (cantidad > 0) {
+        const suma = aprobados.reduce((sum, est) => sum + est.promedio, 0);
+        promedioGeneral = (suma / cantidad).toFixed(2);
+    }
+
+    let textoEstudiante = "estudiante";
+    if (cantidad !== 1) {
+        textoEstudiante = "estudiantes";
+    }
+
+    return `
+    <div class="resumen">
+        <h3>Reporte Grupal - Estudiantes Aprobados</h3>
+        <p><strong>Cantidad:</strong> ${cantidad} ${textoEstudiante}</p>
+        <p><strong>Promedio general:</strong> ${promedioGeneral}</p>
+        <p><em>¡Felicidades al grupo!</em></p>
+        </div>
+    `.trim();
+    };
+
+    document.getElementById('resumen').innerHTML = generarReporteAprobados();
+</script>
+</body>
+</html>

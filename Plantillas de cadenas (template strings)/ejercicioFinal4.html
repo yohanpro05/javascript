@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 4 - Mayoría</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin-top: 50px; background: #f3e5f5; }
+    input, button { padding: 12px; margin: 10px; font-size: 18px; }
+    #resultado { margin-top: 20px; font-size: 24px; padding: 20px; border-radius: 15px; }
+    .mayor { background: #e8f5e9; color: #2e7d32; }
+    .menor { background: #ffebee; color: #c62828; }
+  </style>
+</head>
+<body>
+  <h1>¿Eres mayor de edad?</h1>
+  <input type="number" id="edad" placeholder="Tu edad" value="17">
+  <button onclick="verificar()">Verificar</button>
+  <div id="resultado"></div>
+
+  <script>
+    const verificar = () => {
+      let edad = Number(document.getElementById("edad").value);
+      let mensaje = "";
+      let clase = "";
+
+      if (edad >= 18) {
+        mensaje = `Tienes ${edad} años → Eres mayor de edad.`;
+        clase = "mayor";
+      } else {
+        mensaje = `Tienes ${edad} años → Eres menor de edad.`;
+        clase = "menor";
+      }
+
+      const div = document.getElementById("resultado");
+      div.innerHTML = mensaje;
+      div.className = clase;
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Usuarios y Promedio</title>
+</head>
+<body>
+  <script>
+    // --- Primera parte: usuarios y tarjetas ---
+    const usuarios = [
+      { nombre: "Laura", rol: "Administrador", ciudad: "Bogotá", puntaje: 85, estado: "activo" },
+      { nombre: "Carlos", rol: "Editor", ciudad: "Medellín", puntaje: 72, estado: "inactivo" },
+      { nombre: "Valentina", rol: "Diseñadora", ciudad: "Cali", puntaje: 90, estado: "activo" },
+      { nombre: "Andrés", rol: "Desarrollador", ciudad: "Barranquilla", puntaje: 78, estado: "activo" },
+      { nombre: "Sofía", rol: "Tester", ciudad: "Bucaramanga", puntaje: 65, estado: "inactivo" }
+    ];
+
+    let tarjetasHTML = "";
+    for (const usuario of usuarios) {
+      tarjetasHTML += `
+        <div style="border:1px solid #ccc; border-radius:10px; padding:15px; margin:10px; width:250px; background-color:#f9f9f9; display:inline-block;">
+          <h3>${usuario.nombre}</h3>
+          <p><strong>Rol:</strong> ${usuario.rol}</p>
+          <p><strong>Ciudad:</strong> ${usuario.ciudad}</p>
+          <p><strong>Puntaje:</strong> ${usuario.puntaje}</p>
+          <p><strong>Estado:</strong> 
+            ${usuario.estado === "activo" ? '<span style="color:green;">Activo</span>' : '<span style="color:red;">Inactivo</span>'}
+          </p>
+        </div>
+      `;
+    }
+
+    // --- Segunda parte: promedio ---
+    const calcularPromedio = (lista) => {
+      let suma = 0;
+      for (const item of lista) {
+        suma += item.puntaje;
+      }
+      return (suma / lista.length).toFixed(2);
+    };
+
+    const promedio = calcularPromedio(usuarios);
+
+    const tarjetaHTML = `
+      <div style="margin-top:20px; padding:10px; background-color:#eaeaea; border-radius:8px;">
+        <h3>Promedio de puntajes: ${promedio}</h3>
+      </div>
+    `;
+
+    document.body.innerHTML += tarjetasHTML + tarjetaHTML;
+  </script>
+</body>
+</html>

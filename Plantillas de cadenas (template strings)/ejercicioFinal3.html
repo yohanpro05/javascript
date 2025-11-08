@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 3 - Temperatura</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin-top: 50px; background: #fff3e0; }
+    input, button { padding: 12px; margin: 10px; font-size: 18px; }
+    #resultado { margin-top: 20px; font-size: 28px; color: #e65100; }
+  </style>
+</head>
+<body>
+  <h1>Conversor °C → °F</h1>
+  <input type="number" id="celsius" placeholder="Grados Celsius" value="25">
+  <button onclick="convertir()">Convertir</button>
+  <div id="resultado"></div>
+
+  <script>
+    const convertir = () => {
+      let c = Number(document.getElementById("celsius").value);
+      let f = (c * 9/5) + 32;
+      document.getElementById("resultado").innerHTML = 
+        `${c}°C = <strong>${f.toFixed(1)}°F</strong>`;
+    };
+  </script>
+</body>
+</html>
