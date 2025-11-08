@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saludo</title>
+</head>
+<body style="text-align:center; font-family:Arial; margin-top:50px;">
+    <h2>Saludo Personalizado</h2>
+    <input type="text" id="nombre" placeholder="Tu nombre" value="Ana">
+    <br><br>
+    <button onclick="mostrarSaludo()">Mostrar Saludo</button>
+    <h3 id="resultado"></h3>
+
+    <script>
+        const saludar = (nombre = "Invitado") => `Hola, ${nombre}! Bienvenido al curso.`;
+
+        const mostrarSaludo = () => {
+            let nombre = document.getElementById("nombre").value;
+            document.getElementById("resultado").textContent = saludar(nombre);
+        };
+    </script>
+</body>
+</html>

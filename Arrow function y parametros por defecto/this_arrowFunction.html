@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2 this y arrow function</title>
+</head>
+<body style="text-align: center; font-family: Arial; margin-top: 50px;">
+    <h2>Comparación: this en Función normal vs Arrow function</h2>
+    <p>Observa cómo cabia el comportamiento del this ebn cada caso.</p>
+    <button onclick="persona.saludoNormal()">Saludo con función normal</button>
+    <button onclick="persona.saludoArrow()">Saludo con arrow function</button>
+
+    <h3 id="resultado"></h3>
+
+    <script>
+        // Definición del objeto persona
+        const persona = {
+            nombre: "Yohan",
+
+            // Función normal: su propio "this"
+            saludoNormal: function() {
+                document.getElementById("resultado").textContent =
+                    "Función normal: Hola, soy " + this.nombre + " (this apunta al objeto persona)";
+            },
+
+            // Arrow function dentro de una función normal (para que funcione correctamente)
+            saludoArrow: function() {
+                const mostrar = () => {
+                    document.getElementById("resultado").textContent =
+                        "Arrow function: Hola, soy " + this.nombre +
+                        " (this heredado de la función normal)";
+                };
+                mostrar();
+            }
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda con Productos</title>
+</head>
+<body style="text-align: center; font-family: Arial, margin; top: 50px;">
+<h2>Comparación: Función Normal vs Arrow Function</h2>
+    <p>Haz clic en cada botón para ver cómo se comporta <code>this</code>:</p>
+    <button onclick="tiendaNormal.mostrarProductos()">Con función normal</button>
+    <button onclick="tiendaArrow.mostrarProductos()">Con arrow function</button>
+    <h3 id="resultado1"></h3>
+    <h3 id="resultado2"></h3>
+
+    <script>
+        // Caso 1: Función normal (this se pierde dentro del forEach)
+        const tiendaNormal = {
+            nombre: "Freddy",
+            productos: ["Mouse", "Teclado", "Monitor"],
+
+            mostrarProductos: function() {
+                let mensaje = "";
+                this.productos.forEach(function(producto) {
+                    // 'this' aquí es window → this.nombre = undefined
+                    mensaje += `Tienda ${this.nombre} vende ${producto}<br>`;
+                });
+                document.getElementById("resultado1").innerHTML = mensaje || "X this no funciona aquí";
+            }
+        };
+
+        // Caso 2: Arrow function (this se mantiene correctamente)
+        const tiendaArrow = {
+            nombre: "Freddy",
+            productos: ["Mouse", "Teclado", "Monitor"],
+
+            mostrarProductos: function() {
+                let mensaje = "";
+                this.productos.forEach((producto) => {
+                    // 'this' hereda el contexto → this.nombre = "Freddy"
+                    mensaje += `Tienda ${this.nombre} vende ${producto}<br>`;
+                });
+                document.getElementById("resultado2").innerHTML = mensaje;
+            }
+        };
+    </script>
+</body>
+</html>

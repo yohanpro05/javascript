@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase Estudiante - Función Normal vs Arrow</title>
+</head>
+<body style="text-align:center; font-family:Arial; margin-top:50px;">
+    <h2>Comparación: Función Normal vs Arrow Function</h2>
+    <p>Escribe un nombre y haz clic en cada botón:</p>
+    <input type="text" id="nombre" placeholder="Nombre del estudiante" value="Ana">
+    <br><br>
+    <button onclick="estudianteNormal.mostrar()">Con función normal</button>
+    <button onclick="estudianteArrow.mostrar()">Con arrow function</button>
+    <h3 id="resultado1"></h3>
+    <h3 id="resultado2"></h3>
+
+    <script>
+        // Clase con método normal (this se pierde en el evento)
+        class EstudianteNormal {
+            constructor(nombre) {
+                this.nombre = nombre;
+                this.mostrar = function() {
+                    setTimeout(function() {
+                        // 'this' aquí es window → this.nombre = undefined
+                        document.getElementById("resultado1").textContent = 
+                            `X this no funciona: ${this.nombre || "undefined"}`;
+                    }, 100);
+                };
+            }
+        }
+
+        // Clase con método arrow (this se mantiene)
+        class EstudianteArrow {
+            constructor(nombre) {
+                this.nombre = nombre;
+                this.mostrar = () => {
+                    setTimeout(() => {
+                        // 'this' hereda el contexto del constructor
+                        document.getElementById("resultado2").textContent = 
+                            `El estudiante es: ${this.nombre}`;
+                    }, 100);
+                };
+            }
+        }
+
+        // Instanciar con el valor del input
+        const estudianteNormal = new EstudianteNormal(document.getElementById("nombre").value);
+        const estudianteArrow = new EstudianteArrow(document.getElementById("nombre").value);
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4: Conversión</title>
+</head>
+<body style="text-align:center; font-family:Arial; margin-top:50px;">
+    <h2>Conversión a Pesos Colombianos</h2>
+    <input type="number" id="dolares" placeholder="Dólares" >
+    <input type="number" id="tasa" placeholder="Tasa (opcional)">
+    <br><br>
+    <button onclick="convertir()">Convertir</button>
+    <h3 id="resultado"></h3>
+
+    <script>
+        const convertirDolares = (dolares, tasa = 4000) => dolares * tasa;
+
+        const convertir = () => {
+            let dolares = parseFloat(document.getElementById("dolares").value) || 0;
+            let tasa = document.getElementById("tasa").value === "" ? undefined : parseFloat(document.getElementById("tasa").value);
+            document.getElementById("resultado").textContent = `Pesos: ${convertirDolares(dolares, tasa)}`;
+        };
+    </script>
+</body>
+</html>

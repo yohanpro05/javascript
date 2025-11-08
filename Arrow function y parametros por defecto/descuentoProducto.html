@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descuento de Producto</title>
+</head>
+<body style="text-align: center; font-family: Arial, margin; top: 50px;">
+    <h2>Calculadora de Descuento</h2>
+    <p>Ingrese el nombre del producto y su precio:</p>
+    <input type="text" id="producto" placeholder="Nombre del producto"> <br><br>
+    <input type="number" id="precio" placeholder="Precio del producto"> <br><br>
+    <button onclick="calcularDescuento()">Calcular Descuento</button>
+    <h3 id="resultado"></h3>
+    <script>
+        const calcularDescuento = () => {
+            const nombre = document.getElementById("producto").value;
+            const precio = parseFloat (document.getElementById("precio").value);
+            //calcular el descuento del 10%
+            const descuento = precio * 0.10;
+            const precioFinal  = precio - descuento;
+            //mostrar resultado
+            document.getElementById("resultado").textContent = `El producto "${nombre}" tiene un precio final de: $${precioFinal.toFixed(2)}`;
+        };
+    </script>
+</body>
+</html>

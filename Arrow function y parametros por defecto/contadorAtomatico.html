@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador automático</title>
+</head>
+<body style="text-align: center; font-family: Arial, margin; top: 50px;">
+    <h2>Comparación: Función Normal vs Arrow Function</h2>
+    <p>Haz clic en cada botón para ver cómo se comporta <code>this</code>:</p>
+    <button onclick="contadorNormal.iniciar()">Con función normal</button>
+    <button onclick="contadorArrow.iniciar()">Con arrow function</button>
+    <h3 id="resultado1">0</h3>
+    <h3 id="resultado2">0</h3>
+
+    <script>
+        // Caso 1: Función normal (this se pierde dentro del setInterval)
+        const contadorNormal = {
+            valor: 0,
+
+            iniciar: function() {
+                setInterval(function() {
+                    // 'this' aquí es window → this.valor no existe
+                    this.valor++;
+                    document.getElementById("resultado1").textContent = this.valor || "X this no funciona";
+                }, 1000);
+            }
+        };
+
+        // Caso 2: Arrow function (this se mantiene correctamente)
+        const contadorArrow = {
+            valor: 0,
+
+            iniciar: function() {
+                setInterval(() => {
+                    // 'this' hereda el contexto del objeto contadorArrow
+                    this.valor++;
+                    document.getElementById("resultado2").textContent = this.valor;
+                }, 1000);
+            }
+        };
+    </script>
+</body>
+</html>

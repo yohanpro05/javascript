@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nivel de stock</title>
+</head>
+<body style="text-align: center; font-family: Arial, margin; top: 50px;">
+<h2>Verificar Stock</h2>
+    <p>Ingrese el producto y la cantidad</p>
+    
+    <input type="text" id="producto" placeholder="Nombre del producto" value="Computador portátil"> <br><br>
+    <input type="number" id="cantidad" placeholder="Cantidad en stock" value="3" min="0"> <br><br>
+    
+    <button onclick="verificarStock()">Verificar Stock</button>
+    <h3 id="resultado"></h3>
+
+    <script>
+        function verificarStock() {
+            let producto = document.getElementById("producto").value;
+            let cantidad = parseInt(document.getElementById("cantidad").value);
+
+            let mensaje = "";
+            if (cantidad > 10) {
+                mensaje = producto + ": En stock";
+            } else if (cantidad > 0) {
+                mensaje = producto + ": Stock bajo";
+            } else {
+                mensaje = producto + ": Sin stock";
+            }
+
+            document.getElementById("resultado").textContent = mensaje;
+        }
+    </script>
+    
+</body>
+</html> 

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área Rectángulo</title>
+</head>
+<body style="text-align:center; font-family:Arial; margin-top:50px;">
+    <h2>Área del Rectángulo</h2>
+    <input type="number" id="base" placeholder="Base">
+    <input type="number" id="altura" placeholder="Altura">
+    <br><br>
+    <button onclick="mostrarArea()">Calcular Área</button>
+    <h3 id="resultado"></h3>
+
+    <script>
+        const calcularArea = (base = 1, altura = 1) => base * altura;
+
+        const mostrarArea = () => {
+            let base = parseFloat(document.getElementById("base").value) || 1;
+            let altura = parseFloat(document.getElementById("altura").value) || 1;
+            document.getElementById("resultado").textContent = `Área: ${calcularArea(base, altura)}`;
+        };
+    </script>
+</body>
+</html>

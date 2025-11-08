@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular Cuadrado - this vs Arrow Function</title>
+</head>
+<body style="text-align:center; font-family:Arial; margin-top:50px;">
+    <h2>Comparación entre this y Arrow Function</h2>
+    <p>Ingresa un número y haz clic en el botón correspondiente:</p>
+    <input type="number" id="numero" placeholder="Escribe un número"> <br><br>
+    <button onclick="calculadoraThis.calcularCuadrado()">Con this (función normal)</button>
+    <button onclick="calculadoraArrow.calcularCuadrado()">Con arrow function</button>
+    <h3 id="resultado1"></h3>
+    <h3 id="resultado2"></h3>
+
+    <script>
+        // Caso 1: this dentro de una función normal (pierde el contexto)
+        const calculadoraThis = {
+            numeroInput: document.getElementById("numero"),
+            calcularCuadrado: function() {
+                setTimeout(function() {
+                    const valor = parseFloat(this.numeroInput.value); // X 'this' apunta a window, no al objeto
+                    document.getElementById("resultado1").textContent =
+                        `X this no funciona aquí. Valor leído: ${valor || 'undefined'}`;
+                }, 500);
+            }
+        };
+
+        // Caso 2: this dentro de una arrow function (mantiene el contexto)
+        const calculadoraArrow = {
+            numeroInput: document.getElementById("numero"),
+            calcularCuadrado: function() {
+                setTimeout(() => {
+                    const valor = parseFloat(this.numeroInput.value);
+                    document.getElementById("resultado2").textContent =
+                        `El cuadrado de ${valor} es: ${valor ** 2}`;
+                }, 500);
+            }
+        };
+    </script>
+</body>
+</html>
